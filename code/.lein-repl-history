@@ -1,0 +1,37 @@
+(require 'example.introduction)
+(require 'examples.introduction)
+(take 10 examples.introduction/fibs)
+(refer 'examples.introduction)
+(take 10 fibs)
+exit
+(use 'examples.introduction)
+(take 10 fibs)
+(use :reload 'examples.introduction)
+(doc str)
+(defn awesome-as
+"Compares two people or things to one another. It's, oh-you-say, AWESOME"
+[person01 person02]
+(str *person01 " is as awesome as " *person02)
+)
+(defn awesome-as
+"Compares two people or things to one another. It's, oh-you-say, AWESOME"
+(str person01 " is as awesome as " person02)
+)
+(defn awesome-as
+"Compares two people or things to one another. It's, oh-you-say, AWESOME"
+[person01 person02]
+(str person01 " is as awesome as " person02)
+)
+(use 'clojure.repl)
+(source identity)
+(ancestors (class [1 2 3]))
+['you' 'are' 'wonderful']
+['strings 'do 'not 'need 'second 'quotes 'in 'clojure 'please 'remember!]
+[+ 1 2]
+(+ 2 30)
+(* 3 10 101 1010 101 10)
+(/ 200 40)
+(/20.0 4)
+(/ 20.0 4)
+(= 2 "2")
+(conj '(:b :c :d :e) :a)
