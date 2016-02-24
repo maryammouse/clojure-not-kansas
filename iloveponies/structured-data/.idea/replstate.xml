@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ReplState" timestamp="1456342867864">{:repl-history {:ide [], :local [&quot;(do-a-thing 5)&quot; &quot;(do-a-thing 2)&quot; &quot;(spiff 5)&quot; &quot;(spiff [1 2 3])&quot; &quot;(spiff [])&quot; &quot;(spiff [1 2 3 4 5])&quot; &quot;(spiff [1 2])&quot; &quot;(conj [1 2 3] 4)&quot; &quot;(assoc [1 2 3 4] 2 \&quot;foo\&quot;)&quot; &quot;(cutify [])&quot; &quot;(cutify [1 2 3])&quot; &quot;(cutify [\&quot;a\&quot; \&quot;b\&quot; \&quot;c\&quot;])&quot; &quot;(cutify [3 2 1])&quot; &quot;(cutify [\&quot;firefly\&quot; 2 3 ])&quot; &quot;(spiff-destructuring [3 2])&quot; &quot;(spiff-destructuring [3])&quot; &quot;(spiff-destructuring [3 2 1])&quot; &quot;(spiff-destructuring [1 2 3 4 5]\n                     )&quot; &quot;(spiff-destructuring [1 2 3 4 5])&quot; &quot;(spiff-destructuring [1 2 4 5 3])&quot;], :remote []}}</component>
+</project>
