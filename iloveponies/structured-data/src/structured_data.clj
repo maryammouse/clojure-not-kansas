@@ -58,6 +58,7 @@
 (def embassytown {:title "Embassytown", :authors [china]})
 (def little-schemer {:title "The Little Schemer"
                      :authors [friedman, felleisen]})
+(def books [cities, wild-seed, embassytown, little-schemer])
 
 (defn title-length [book]
   (count (:title book)))
@@ -76,13 +77,15 @@
   (if (contains? author :death-year) false true))
 
 (defn element-lengths [collection]
-  :-)
+  (map count collection))
 
 (defn second-elements [collection]
-  :-)
+  (let [ second (fn [x] (get x 1))]
+    (map second collection)))
 
 (defn titles [books]
-  :-)
+  (map :title books))
+
 
 (defn monotonic? [a-seq]
   :-)
