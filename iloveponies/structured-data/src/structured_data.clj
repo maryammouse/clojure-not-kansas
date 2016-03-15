@@ -120,32 +120,77 @@
         ]
     (str name (if (:birth-year author) years ""))))
 
-authors
-books
 
 (defn authors->string [authors]
-  :-)
+  (apply str (interpose ", " (map author->string authors))))
+
 
 (defn book->string [book]
-  :-)
+  (apply str (:title book) ", written by "
+         (authors->string (:authors book))))
+
 
 (defn books->string [books]
-  :-)
+  (apply str
+         (if (== (count books) 0) (str "No books.")
+                                  (if (== 1 (count books))
+                                    (str (count books) " book. ")
+                                    (str (count books) " books. ")
+                                    ))
+         (map book->string books)))
+
+(count [little-schemer, cities, wild-seed])
+(books->string [])
+(books->string [cities])
+(books->string [little-schemer, cities, wild-seed])
 
 (defn books-by-author [author books]
-  :-)
+  (filter (fn [book] (has-author? book author)) books))
+
+(books-by-author china books)
+(books-by-author octavia books)
 
 (defn author-by-name [name authors]
-  :-)
+  (first (filter (fn [author] (= name (:name author))) authors)))
+
+(def authors #{china, felleisen, octavia, friedman})
+
+(author-by-name "Octavia E. Butler" authors)
+(author-by-name "Octavia E. Butler" #{felleisen, friedman})
+(author-by-name "George R. R. Martin" authors)
+
 
 (defn living-authors [authors]
-  :-)
+  (filter (fn [author] (alive? author)) authors))
+
+(living-authors #{china, felleisen})
+
+(def jrrtolkien {:name "J. R. R. Tolkien" :birth-year 1892 :death-year 1973})
+(def christopher {:name "Christopher Tolkien" :birth-year 1924})
+(def kay {:name "Guy Gavriel Kay" :birth-year 1954})
+
+(def silmarillion {:title "Silmarillion"
+                   :authors #{jrrtolkien, christopher, kay}})
+
+(def dick {:name "Philip K. Dick", :birth-year 1928, :death-year 1982})
+(def zelazny {:name "Roger Zelazny", :birth-year 1937, :death-year 1995})
+(def deus-irae {:title "Deus Irae", :authors #{dick, zelazny}})
+
 
 (defn has-a-living-author? [book]
-  :-)
+  (not (empty? (living-authors (:authors book)))))
+
+(has-a-living-author? silmarillion)
+(has-a-living-author? wild-seed)
+(has-a-living-author? little-schemer)
+(has-a-living-author? cities)
+(has-a-living-author? deus-irae)
 
 (defn books-by-living-authors [books]
-  :-)
+  (filter has-a-living-author? books))
+
+(books-by-living-authors books)
+(books-by-living-authors (concat books [deus-irae, silmarillion]))
 
 (take 2
       (filter even?
