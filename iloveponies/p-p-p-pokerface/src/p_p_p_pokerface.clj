@@ -38,26 +38,85 @@
   )
 
 
+
 (defn three-of-a-kind? [hand]
-  nil)
+  (not (empty?
+         (filter
+           (fn [x] (== 3 x))
+           (vals (frequencies (map rank hand)))))))
+
 
 (defn four-of-a-kind? [hand]
-  nil)
+  (not (empty?
+         (filter
+           (fn [x] (== 4 x))
+           (vals (frequencies (map rank hand)))))))
+
 
 (defn flush? [hand]
-  nil)
+  (not (empty?
+         (filter
+           (fn [x] (== 5 x))
+           (vals (frequencies (map suit hand)))))))
+
 
 (defn full-house? [hand]
-  nil)
+  (and (not
+         (empty?
+           (filter
+             (fn [x] (== 3 x))
+             (vals (frequencies (map rank hand))))))
+       (not
+         (empty?
+           (filter
+             (fn [x] (== 2 x))
+             (vals (frequencies (map rank hand))))))))
+
+(full-house? three-of-a-kind-hand)
+(full-house? full-house-hand)
 
 (defn two-pairs? [hand]
-  nil)
+  (or (== 2 (count
+              (filter
+                (fn [x] (== 2 x))
+                (vals (frequencies (map rank hand))))))
+      (not
+        (empty?
+          (filter
+            (fn [x] (== 4 x))
+            (vals (frequencies (map rank hand))))))))
+
+(two-pairs? two-pairs-hand)
+(two-pairs? pair-hand)
+(two-pairs? four-of-a-kind-hand)
 
 (defn straight? [hand]
-  nil)
+  (let [fixed-ace-ranks (if (empty?
+                           (filter
+                             (fn [x] (= 2 (rank x)))
+                             hand))
+                       (map rank hand)
+                       (replace {14, 1} (map rank hand)))
+        lowest (first (sort fixed-ace-ranks))
+
+        ]
+    (= (sort fixed-ace-ranks)
+       (range lowest (+ 5 lowest)))))
+
+(straight? straight-hand)
+(straight? two-pairs-hand)
+(straight? low-ace-straight-hand)
+(straight? ["2H" "2D" "3H" "4H" "5H"])
+(straight? high-ace-straight-hand)
 
 (defn straight-flush? [hand]
-  nil)
+  (and (straight? hand) (flush? hand)))
+
+(straight-flush? straight-hand)
+(straight-flush? flush-hand)
+(straight-flush? straight-flush-hand)
+(straight-flush? low-ace-straight-flush-hand)
+(straight-flush? high-ace-straight-flush-hand)
 
 (defn value [hand]
   nil)
