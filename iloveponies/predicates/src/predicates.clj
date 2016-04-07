@@ -66,16 +66,30 @@
 (def books #{cities, wild-seed, lord-of-light,
              deus-irae, ysabel, scanner-darkly})
 
-
-
 (defn has-award? [book award]
-  :-)
+  (if (contains? (:awards book) award) true false))
+
+(has-award? scanner-darkly :hugo)
 
 (defn HAS-ALL-THE-AWARDS? [book awards]
-  :-)
+  (every? (fn [award] (has-award? book award)) awards))
+
+(HAS-ALL-THE-AWARDS? cities #{:locus})
+(HAS-ALL-THE-AWARDS? cities #{:locus :world-fantasy :hugo})
+(HAS-ALL-THE-AWARDS? cities #{:locus :world-fantasy :hugo :pulitzer})
+(HAS-ALL-THE-AWARDS? lord-of-light #{:locus :world-fantasy :hugo})
+(HAS-ALL-THE-AWARDS? lord-of-light #{:hugo})
+(HAS-ALL-THE-AWARDS? scanner-darkly #{})
+
 
 (defn my-some [pred a-seq]
-  :-)
+  (first (filter (fn [x] (not (false? x))) (map pred a-seq))))
+
+(my-some even? [1 3 5 7])
+(my-some even? [1 3 5 7 8])
+(my-some neg? [1 3 5 0 7 -1 8])
+(my-some first [[false] [1]])
+(my-some nil? [1 nil 2])
 
 (defn my-every? [pred a-seq]
   :-)
